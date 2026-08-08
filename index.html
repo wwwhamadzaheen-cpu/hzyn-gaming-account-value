@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HZYN — Gaming Account Valuation</title>
+
+<style>
+
+/* =========================================================
+   BASIC SETUP
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #07101f;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+button,
+select,
+input {
+    font-family: inherit;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================================
+   TOP HEADER
+========================================================= */
+
+header {
+    position: relative;
+    text-align: center;
+    padding: 28px 20px 35px;
+    background:
+        radial-gradient(circle at center, rgba(50,120,255,.25), transparent 45%),
+        #07101f;
+    overflow: hidden;
+}
+
+.logo {
+    width: 105px;
+    height: 105px;
+    object-fit: contain;
+    border-radius: 25px;
+    display: block;
+    margin: 0 auto 15px;
+
+    filter:
+        drop-shadow(0 0 10px rgba(60,140,255,.7))
+        drop-shadow(0 0 25px rgba(60,140,255,.35));
+}
+
+.brand {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: 10px;
+}
+
+.brand span:first-child {
+    color: white;
+}
+
+.brand span:last-child {
+    color: #4d9cff;
+}
+
+.creator {
+    margin-top: 14px;
+    font-size: 17px;
+    color: #9bb9e9;
+}
+
+.creator strong {
+    color: white;
+}
+
+
+/* =========================================================
+   LANGUAGE + CURRENCY
+========================================================= */
+
+.settings {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.settings select {
+    background: #111f38;
+    color: white;
+    border: 1px solid #3c64a0;
+    border-radius: 12px;
+    padding: 13px 18px;
+    min-width: 170px;
+    font-size: 15px;
+    outline: none;
+}
+
+.settings select:focus {
+    border-color: #5ba2ff;
+    box-shadow: 0 0 15px rgba(70,150,255,.3);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 75px 20px;
+    min-height: 380px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 30%, #244b91, #0b1730 55%, #07101f);
+}
+
+.badge {
+    display: inline-block;
+    padding: 11px 20px;
+    border: 1px solid #3878db;
+    border-radius: 30px;
+    color: #75b3ff;
+    font-weight: bold;
+    letter-spacing: 1px;
+    background: rgba(25,65,130,.35);
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 82px);
+    line-height: .95;
+    margin-top: 28px;
+    font-weight: 950;
+    letter-spacing: 4px;
+}
+
+.hero h1 span {
+    color: #4d9cff;
+    text-shadow: 0 0 30px rgba(60,140,255,.45);
+}
+
+.hero p {
+    max-width: 700px;
+    margin: 28px auto 0;
+    color: #a9bee0;
+    font-size: 19px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   GAME SCENE
+========================================================= */
+
+#gameScene {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    transition: all .5s ease;
+}
+
+
+/* =========================================================
+   FC MOBILE SCENE
+   FOOTBALL EXISTS ONLY HERE
+========================================================= */
+
+.fc-scene {
+    background:
+        linear-gradient(to bottom, #071b42 0%, #103a72 45%, #0b662f 46%, #168b3c 100%);
+}
+
+.fc-stadium-lights {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.9), transparent 7%),
+        radial-gradient(circle at 85% 20%, rgba(255,255,255,.9), transparent 7%);
+    opacity: .7;
+}
+
+.fc-crowd {
+    position: absolute;
+    top: 70px;
+    width: 100%;
+    height: 90px;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #101827 0 15px,
+            #233b61 15px 30px
+        );
+    opacity: .8;
+}
+
+.fc-pitch {
+    position: absolute;
+    bottom: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 190px;
+    background: #11883b;
+    border: 3px solid rgba(255,255,255,.7);
+    border-radius: 50% 50% 0 0;
+}
+
+.fc-pitch::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: rgba(255,255,255,.6);
+}
+
+.fc-player {
+    position: absolute;
+    bottom: 65px;
+    left: 42%;
+    width: 35px;
+    height: 75px;
+    background: linear-gradient(#164c9a 0 45%, #111 45%);
+    border-radius: 15px 15px 7px 7px;
+    animation: fcRun 1.5s infinite alternate;
+}
+
+.fc-player::before {
+    content: "";
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    background: #d69a70;
+    border-radius: 50%;
+    top: -25px;
+    left: 4px;
+}
+
+.fc-ball {
+    position: absolute;
+    bottom: 75px;
+    left: 48%;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    animation: fcBall 1.8s infinite;
+}
+
+.fc-text {
+    position: absolute;
+    top: 30px;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 0 20px #3995ff;
+}
+
+@keyframes fcRun {
+    from { transform: translateX(-20px); }
+    to { transform: translateX(20px); }
+}
+
+@keyframes fcBall {
+    0% {
+        transform: translate(0,0);
+    }
+
+    45% {
+        transform: translate(100px,-100px) scale(.8);
+    }
+
+    100% {
+        transform: translate(220px,-40px) scale(.5);
+    }
+}
+
+
+/* =========================================================
+   FREE FIRE SCENE
+   NO FOOTBALL
+========================================================= */
+
+.freefire-scene {
+    background:
+        radial-gradient(circle at 70% 50%, #ff4b00, transparent 25%),
+        radial-gradient(circle at 25% 80%, #ffb000, transparent 20%),
+        linear-gradient(135deg, #170a08, #351009, #080b15);
+}
+
+.fire-smoke {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,90,0,.3), transparent 65%);
+    animation: smoke 3s infinite alternate;
+}
+
+.ff-character {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75px;
+    height: 150px;
+    background: linear-gradient(#111 0 40%, #8c1717 40% 70%, #151515 70%);
+    border-radius: 25px 25px 10px 10px;
+    box-shadow: 0 0 30px rgba(255,60,0,.5);
+}
+
+.ff-character::before {
+    content: "";
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #9d694c;
+    left: 10px;
+    top: -45px;
+}
+
+.ff-flame {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(transparent, rgba(255,80,0,.25));
+    animation: flame 1s infinite alternate;
+}
+
+.ff-title {
+    position: absolute;
+    top: 35px;
+    width: 100%;
+    text-align: center;
+    font-size: 34px;
+    font-weight: 950;
+    letter-spacing: 5px;
+    color: #ff8a32;
+    text-shadow: 0 0 25px #ff3000;
+}
+
+@keyframes smoke {
+    from {
+        transform: translate(-100px,20px) scale(.8);
+    }
+
+    to {
+        transform: translate(100px,-40px) scale(1.2);
+    }
+}
+
+@keyframes flame {
+    from { opacity: .3; }
+    to { opacity: .9; }
+}
+
+
+/* =========================================================
+   PUBG SCENE
+   NO FOOTBALL
+========================================================= */
+
+.pubg-scene {
+    background:
+        radial-gradient(circle at 70% 60%, rgba(180,150,80,.3), transparent 30%),
+        linear-gradient(135deg, #111c18, #273a2b, #0b1110);
+}
+
+.pubg-mountain {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+    background:
+        linear-gradient(135deg, transparent 40%, #17231c 40% 60%, transparent 60%);
+}
+
+.pubg-character {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 145px;
+    background: linear-gradient(#353b3b 0 35%, #75613d 35% 70%, #151515 70%);
+    border-radius: 20px 20px 10px 10px;
+    box-shadow: 0 0 25px rgba(180,160,100,.25);
+}
+
+.pubg-character::before {
+    content: "";
+    position: absolute;
+    width: 58px;
+    height: 50px;
+    background: #343936;
+    border-radius: 50%;
+    left: 6px;
+    top: -40px;
+}
+
+.pubg-crate {
+    position: absolute;
+    bottom: 25px;
+    left: 15%;
+    width: 70px;
+    height: 55px;
+    background: #6f4d2e;
+    border: 4px solid #3b2817;
+    animation: crate 2s infinite alternate;
+}
+
+.pubg-title {
+    position: absolute;
+    top: 35px;
+    width: 100%;
+    text-align: center;
+    font-size: 34px;
+    font-weight: 950;
+    letter-spacing: 4px;
+    color: #d8c18c;
+}
+
+@keyframes crate {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+}
+
+
+/* =========================================================
+   ROBLOX SCENE
+   NO FOOTBALL
+========================================================= */
+
+.roblox-scene {
+    background:
+        linear-gradient(135deg, #5b35e6, #198bd0 45%, #14b87a);
+}
+
+.roblox-block {
+    position: absolute;
+    border-radius: 12px;
+    animation: blockFloat 4s infinite alternate ease-in-out;
+}
+
+.block1 {
+    width: 100px;
+    height: 100px;
+    background: #ff4b5c;
+    left: 10%;
+    bottom: 25px;
+}
+
+.block2 {
+    width: 130px;
+    height: 70px;
+    background: #ffd447;
+    right: 10%;
+    bottom: 35px;
+}
+
+.block3 {
+    width: 75px;
+    height: 75px;
+    background: #6b5cff;
+    left: 70%;
+    top: 40px;
+}
+
+.roblox-avatar {
+    position: absolute;
+    left: 50%;
+    bottom: 35px;
+    transform: translateX(-50%);
+    width: 75px;
+    height: 130px;
+    background: linear-gradient(#ffdb35 0 35%, #25a5ff 35% 70%, #333 70%);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.3);
+}
+
+.roblox-avatar::before {
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: #f2b67e;
+    left: 2px;
+    top: -65px;
+    border-radius: 12px;
+}
+
+.roblox-title {
+    position: absolute;
+    top: 30px;
+    width: 100%;
+    text-align: center;
+    font-size: 34px;
+    font-weight: 950;
+    letter-spacing: 3px;
+    color: white;
+    text-shadow: 0 0 20px rgba(255,255,255,.4);
+}
+
+@keyframes blockFloat {
+    from {
+        transform: translateY(0) rotate(0);
+    }
+
+    to {
+        transform: translateY(-20px) rotate(4deg);
+    }
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.main {
+    max-width: 850px;
+    margin: -40px auto 80px;
+    position: relative;
+    z-index: 5;
+    padding: 20px;
+}
+
+.card {
+    background: rgba(13,24,43,.96);
+    border: 1px solid #29466f;
+    border-radius: 25px;
+    padding: 35px;
+    box-shadow: 0 25px 80px rgba(0,0,0,.45);
+    backdrop-filter: blur(15px);
+}
+
+.card h2 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.card-description {
+    color: #91a9d1;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.field {
+    margin-bottom: 22px;
+}
+
+.field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 9px;
+    font-size: 16px;
+}
+
+.field input,
+.field select {
+    width: 100%;
+    padding: 16px;
+    border-radius: 13px;
+    border: 1px solid #30496f;
+    background: #17253c;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+.field input:focus,
+.field select:focus {
+    border-color: #5ba5ff;
+    box-shadow: 0 0 15px rgba(70,150,255,.2);
+}
+
+
+/* =========================================================
+   GAME-SPECIFIC INPUTS
+========================================================= */
+
+.game-fields {
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 18px;
+    background: rgba(20,38,65,.65);
+    border: 1px solid #2c4b75;
+}
+
+.game-fields h3 {
+    margin-bottom: 20px;
+    color: #65a9ff;
+}
+
+
+/* =========================================================
+   UPLOAD AREA
+========================================================= */
+
+.upload-box {
+    border: 2px dashed #416b9f;
+    border-radius: 18px;
+    padding: 28px;
+    text-align: center;
+    background: rgba(30,54,88,.3);
+    margin: 20px 0;
+}
+
+.upload-box strong {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.upload-box p {
+    color: #91a9d1;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.upload-box input {
+    border: none;
+    background: transparent;
+}
+
+
+/* =========================================================
+   EXTRA INFORMATION
+========================================================= */
+
+.extra {
+    color: #9eb3d4;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   GOofy BOT
+========================================================= */
+
+#botStatus {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #69adff;
+    margin: 15px 0;
+    min-height: 25px;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.calculate-btn {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(90deg, #2467dc, #5b9cff);
+    color: white;
+    font-size: 18px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .25s;
+    box-shadow: 0 10px 30px rgba(40,110,230,.25);
+}
+
+.calculate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(40,110,230,.4);
+}
+
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+#result {
+    margin-top: 25px;
+    padding: 30px;
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at top, rgba(60,130,255,.2), transparent 55%),
+        #101e34;
+    border: 1px solid #3967a0;
+    text-align: center;
+    display: none;
+}
+
+.result-label {
+    color: #9bb5dc;
+    font-size: 15px;
+}
+
+.result-value {
+    margin-top: 10px;
+    font-size: 48px;
+    font-weight: 950;
+    color: #67aaff;
+    text-shadow: 0 0 25px rgba(70,150,255,.3);
+}
+
+.result-note {
+    margin-top: 12px;
+    color: #8da7ca;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    text-align: center;
+    padding: 45px 20px;
+    color: #7f96b9;
+    border-top: 1px solid #172945;
+}
+
+footer strong {
+    color: white;
+}
+
+.social {
+    margin-top: 15px;
+    line-height: 1.8;
+}
+
+.social a {
+    color: #67aaff;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .brand {
+        font-size: 35px;
+        letter-spacing: 7px;
+    }
+
+    .logo {
+        width: 85px;
+        height: 85px;
+    }
+
+    .hero {
+        padding: 55px 15px;
+    }
+
+    .hero h1 {
+        font-size: 46px;
+    }
+
+    .card {
+        padding: 22px;
+    }
+
+    .result-value {
+        font-size: 38px;
+    }
+
+    #gameScene {
+        height: 250px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <!-- YOUR LOGO -->
+    <!-- Make sure logo.png is in the SAME folder as index.html -->
+
+    <img
+        src="logo.png"
+        alt="HZYN Logo"
+        class="logo"
+        onerror="this.style.display='none';"
+    >
+
+    <div class="brand">
+        H<span>ZYN</span>
+    </div>
+
+    <div class="creator">
+        Created by <strong>HAMAD ZAHEEN</strong>
+    </div>
+
+    <div class="settings">
+
+        <select id="language">
+            <option value="en">🌐 English</option>
+            <option value="ml">🌐 മലയാളം</option>
+            <option value="hi">🌐 हिन्दी</option>
+            <option value="ar">🌐 العربية</option>
+            <option value="es">🌐 Español</option>
+            <option value="fr">🌐 Français</option>
+            <option value="de">🌐 Deutsch</option>
+            <option value="pt">🌐 Português</option>
+            <option value="ja">🌐 日本語</option>
+            <option value="ko">🌐 한국어</option>
+        </select>
+
+        <select id="currency">
+            <option value="INR">₹ INR</option>
+            <option value="USD">$ USD</option>
+            <option value="EUR">€ EUR</option>
+            <option value="GBP">£ GBP</option>
+            <option value="AED">د.إ AED</option>
+            <option value="SAR">﷼ SAR</option>
+            <option value="JPY">¥ JPY</option>
+            <option value="KRW">₩ KRW</option>
+        </select>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="badge">
+        ⚡ GAMING ACCOUNT VALUATION
+    </div>
+
+    <h1>
+        CHECK THE<br>
+        <span>AURA.</span>
+    </h1>
+
+    <p>
+        Drop your account details, screenshot or video
+        and get an estimated gaming account value.
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     GAME ANIMATION
+===================================================== -->
+
+<div id="gameScene" class="fc-scene">
+
+    <!-- FC MOBILE DEFAULT -->
+
+    <div class="fc-stadium-lights"></div>
+    <div class="fc-crowd"></div>
+    <div class="fc-pitch"></div>
+
+    <div class="fc-text">
+        MATCHDAY // VALUE MODE
+    </div>
+
+    <div class="fc-player"></div>
+    <div class="fc-ball"></div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN FORM
+===================================================== -->
+
+<main class="main">
+
+<div class="card">
+
+    <h2>⚡ Calculate your account</h2>
+
+    <p class="card-description">
+        Choose your game and enter the information you know.
+        You can also upload a screenshot or video instead.
+    </p>
+
+
+    <!-- GAME -->
+
+    <div class="field">
+
+        <label>🎮 Game</label>
+
+        <select id="game" onchange="changeGame()">
+
+            <option value="FC Mobile">
+                ⚽ FC Mobile
+            </option>
+
+            <option value="Free Fire">
+                🔥 Free Fire
+            </option>
+
+            <option value="PUBG Mobile">
+                🪖 PUBG Mobile
+            </option>
+
+            <option value="Roblox">
+                🧱 Roblox
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- ACCOUNT AGE -->
+
+    <div class="field">
+
+        <label>📅 Account Age</label>
+
+        <input
+            type="number"
+            id="accountAge"
+            min="0"
+            placeholder="Example: 4"
+        >
+
+    </div>
+
+
+    <!-- =================================================
+         FC MOBILE
+    ================================================== -->
+
+    <div id="fcFields" class="game-fields">
+
+        <h3>⚽ FC Mobile Information</h3>
+
+        <div class="field">
+
+            <label>OVR</label>
+
+            <input
+                type="number"
+                id="fcOvr"
+                placeholder="Example: 118"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>Coins</label>
+
+            <input
+                type="number"
+                id="fcCoins"
+                placeholder="Example: 79000000"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>Gems</label>
+
+            <input
+                type="number"
+                id="fcGems"
+                placeholder="Example: 3000"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>Rare / Valuable Players</label>
+
+            <input
+                type="number"
+                id="fcPlayers"
+                placeholder="Example: 15"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>Squad / Reserves Information</label>
+
+            <input
+                type="text"
+                id="fcSquad"
+                placeholder="Optional — describe your squad"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         FREE FIRE
+    ================================================== -->
+
+    <div id="ffFields" class="game-fields hidden">
+
+        <h3>🔥 Free Fire Information</h3>
+
+        <div class="field">
+
+            <label>Level</label>
+
+            <input
+                type="number"
+                id="ffLevel"
+                placeholder="Example: 70"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>Diamonds</label>
+
+            <input
+                type="number"
+                id="ffDiamonds"
+                placeholder="Example: 5000"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>Rare Items / Skins</label>
+
+            <input
+                type="number"
+                id="ffItems"
+                placeholder="Example: 25"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>Elite / Special Items</label>
+
+            <input
+                type="number"
+                id="ffSpecial"
+                placeholder="Optional"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         PUBG
+    ================================================== -->
+
+    <div id="pubgFields" class="game-fields hidden">
+
+        <h3>🪖 PUBG Mobile Information</h3>
+
+        <div class="field">
+
+            <label>Level</label>
+
+            <input
+                type="number"
+                id="pubgLevel"
+                placeholder="Example: 65"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>UC</label>
+
+            <input
+                type="number"
+                id="pubgUC"
+                placeholder="Example: 3000"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>Rare Outfits / Skins</label>
+
+            <input
+                type="number"
+                id="pubgItems"
+                placeholder="Example: 20"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>Special Items / Upgrades</label>
+
+            <input
+                type="number"
+                id="pubgSpecial"
+                placeholder="Optional"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         ROBLOX
+    ================================================== -->
+
+    <div id="robloxFields" class="game-fields hidden">
+
+        <h3>🧱 Roblox Information</h3>
+
+        <div class="field">
+
+            <label>Total Robux Spent</label>
+
+            <input
+                type="number"
+                id="robuxSpent"
+                placeholder="Example: 25000"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>Most Played Game</label>
+
+            <input
+                type="text"
+                id="robloxPlayed"
+                placeholder="Example: Your favourite Roblox game"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>Favourite Game</label>
+
+            <input
+                type="text"
+                id="robloxFavourite"
+                placeholder="Optional"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>Rare Items / Limiteds</label>
+
+            <input
+                type="number"
+                id="robloxItems"
+                placeholder="Example: 10"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         UPLOAD
+    ================================================== -->
+
+    <div class="upload-box">
+
+        <strong>📸 Upload your account</strong>
+
+        <p>
+            Upload a screenshot or video of your squad/account.
+            This is optional.
+        </p>
+
+        <input
+            type="file"
+            id="accountUpload"
+            accept="image/*,video/*"
+        >
+
+    </div>
+
+
+    <div class="extra">
+
+        💡 You don't have to provide every piece of information.
+        Enter what you know, or upload your account screenshot/video.
+
+    </div>
+
+
+    <!-- BOT STATUS -->
+
+    <div id="botStatus"></div>
+
+
+    <!-- CALCULATE -->
+
+    <button
+        class="calculate-btn"
+        onclick="calculateValue()"
+    >
+        ⚡ What's the approximate value of my account?
+    </button>
+
+
+    <!-- RESULT -->
+
+    <div id="result">
+
+        <div class="result-label">
+            ESTIMATED ACCOUNT VALUE
+        </div>
+
+        <div
+            id="resultValue"
+            class="result-value"
+        >
+            ₹0
+        </div>
+
+        <div class="result-note">
+            This is an estimated value based on the information
+            provided. Actual market prices can vary.
+        </div>
+
+    </div>
+
+</div>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div>
+        Made with ⚡ by
+        <strong>HAMAD ZAHEEN</strong>
+    </div>
+
+    <div class="social">
+
+        Official page:
+        <a href="https://instagram.com/hxmad._.404" target="_blank">
+            @hxmad._.404
+        </a>
+
+        <br>
+
+        Partner in making this:
+        <strong>ZIYEN NAZAL</strong>
+
+        <br>
+
+        Instagram:
+        <a href="https://instagram.com/ziyu_zinu" target="_blank">
+            @ziyu_zinu
+        </a>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   CHANGE GAME
+========================================================= */
+
+function changeGame() {
+
+    const game = document.getElementById("game").value;
+
+    const scene = document.getElementById("gameScene");
+
+    const fc = document.getElementById("fcFields");
+    const ff = document.getElementById("ffFields");
+    const pubg = document.getElementById("pubgFields");
+    const roblox = document.getElementById("robloxFields");
+
+
+    /* Hide ALL game fields */
+
+    fc.classList.add("hidden");
+    ff.classList.add("hidden");
+    pubg.classList.add("hidden");
+    roblox.classList.add("hidden");
+
+
+    /* =====================================================
+       FC MOBILE
+    ===================================================== */
+
+    if (game === "FC Mobile") {
+
+        fc.classList.remove("hidden");
+
+        scene.className = "fc-scene";
+
+        scene.innerHTML = `
+
+            <div class="fc-stadium-lights"></div>
+
+            <div class="fc-crowd"></div>
+
+            <div class="fc-pitch"></div>
+
+            <div class="fc-text">
+                MATCHDAY // VALUE MODE
+            </div>
+
+            <div class="fc-player"></div>
+
+            <div class="fc-ball"></div>
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       FREE FIRE
+    ===================================================== */
+
+    else if (game === "Free Fire") {
+
+        ff.classList.remove("hidden");
+
+        scene.className = "freefire-scene";
+
+        scene.innerHTML = `
+
+            <div class="fire-smoke"></div>
+
+            <div class="ff-flame"></div>
+
+            <div class="ff-title">
+                BATTLE // VALUE MODE
+            </div>
+
+            <div class="ff-character"></div>
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       PUBG
+    ===================================================== */
+
+    else if (game === "PUBG Mobile") {
+
+        pubg.classList.remove("hidden");
+
+        scene.className = "pubg-scene";
+
+        scene.innerHTML = `
+
+            <div class="pubg-mountain"></div>
+
+            <div class="pubg-title">
+                BATTLE ROYALE // VALUE MODE
+            </div>
+
+            <div class="pubg-crate"></div>
+
+            <div class="pubg-character"></div>
+
+        `;
+
+    }
+
+
+    /* =====================================================
+       ROBLOX
+    ===================================================== */
+
+    else if (game === "Roblox") {
+
+        roblox.classList.remove("hidden");
+
+        scene.className = "roblox-scene";
+
+        scene.innerHTML = `
+
+            <div class="roblox-title">
+                CREATE // PLAY // VALUE
+            </div>
+
+            <div class="roblox-block block1"></div>
+
+            <div class="roblox-block block2"></div>
+
+            <div class="roblox-block block3"></div>
+
+            <div class="roblox-avatar"></div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   CURRENCY
+========================================================= */
+
+function getCurrencySymbol(currency) {
+
+    const symbols = {
+
+        INR: "₹",
+        USD: "$",
+        EUR: "€",
+        GBP: "£",
+        AED: "د.إ",
+        SAR: "﷼",
+        JPY: "¥",
+        KRW: "₩"
+
+    };
+
+    return symbols[currency] || "$";
+
+}
+
+
+/* =========================================================
+   APPROXIMATE VALUE CALCULATOR
+========================================================= */
+
+function calculateValue() {
+
+    const game =
+        document.getElementById("game").value;
+
+    const age =
+        Number(document.getElementById("accountAge").value) || 0;
+
+
+    let valueINR = 0;
+
+
+    /* =====================================================
+       FC MOBILE
+    ===================================================== */
+
+    if (game === "FC Mobile") {
+
+        const ovr =
+            Number(document.getElementById("fcOvr").value) || 0;
+
+        const coins =
+            Number(document.getElementById("fcCoins").value) || 0;
+
+        const gems =
+            Number(document.getElementById("fcGems").value) || 0;
+
+        const players =
+            Number(document.getElementById("fcPlayers").value) || 0;
+
+
+        valueINR =
+            (ovr * 120) +
+            (coins / 10000000 * 250) +
+            (gems / 1000 * 80) +
+            (players * 120) +
+            (age * 50);
+
+    }
+
+
+    /* =====================================================
+       FREE FIRE
+    ===================================================== */
+
+    else if (game === "Free Fire") {
+
+        const level =
+            Number(document.getElementById("ffLevel").value) || 0;
+
+        const diamonds =
+            Number(document.getElementById("ffDiamonds").value) || 0;
+
+        const items =
+            Number(document.getElementById("ffItems").value) || 0;
+
+        const special =
+            Number(document.getElementById("ffSpecial").value) || 0;
+
+
+        valueINR =
+            (level * 25) +
+            (diamonds * 0.08) +
+            (items * 150) +
+            (special * 250) +
+            (age * 50);
+
+    }
+
+
+    /* =====================================================
+       PUBG
+    ===================================================== */
+
+    else if (game === "PUBG Mobile") {
+
+        const level =
+            Number(document.getElementById("pubgLevel").value) || 0;
+
+        const uc =
+            Number(document.getElementById("pubgUC").value) || 0;
+
+        const items =
+            Number(document.getElementById("pubgItems").value) || 0;
+
+        const special =
+            Number(document.getElementById("pubgSpecial").value) || 0;
+
+
+        valueINR =
+            (level * 35) +
+            (uc * 0.12) +
+            (items * 200) +
+            (special * 350) +
+            (age * 60);
+
+    }
+
+
+    /* =====================================================
+       ROBLOX
+    ===================================================== */
+
+    else if (game === "Roblox") {
+
+        const spent =
+            Number(document.getElementById("robuxSpent").value) || 0;
+
+        const items =
+            Number(document.getElementById("robloxItems").value) || 0;
+
+
+        valueINR =
+            (spent * 0.03) +
+            (items * 300) +
+            (age * 70);
+
+    }
+
+
+    /* Minimum value */
+
+    if (valueINR < 100) {
+        valueINR = 100;
+    }
+
+
+    /* =====================================================
+       BOT ANIMATION
+    ===================================================== */
+
+    const bot =
+        document.getElementById("botStatus");
+
+    const result =
+        document.getElementById("result");
+
+    const resultValue =
+        document.getElementById("resultValue");
+
+
+    result.style.display = "none";
+
+    bot.innerHTML = "Goofy Bot......";
+
+    let dots = 6;
+
+    const loading = setInterval(() => {
+
+        bot.innerHTML =
+            "Goofy Bot" + ".".repeat(dots);
+
+        dots++;
+
+        if (dots > 8) {
+            dots = 3;
+        }
+
+    }, 250);
+
+
+    /* Wait */
+
+    setTimeout(() => {
+
+        clearInterval(loading);
+
+        bot.innerHTML = "Goofy Bot finished cooking. 🗿";
+
+
+        /* =================================================
+           CONVERT INR
+        ================================================== */
+
+        const currency =
+            document.getElementById("currency").value;
+
+
+        const rates = {
+
+            INR: 1,
+            USD: 0.0117,
+            EUR: 0.0107,
+            GBP: 0.0092,
+            AED: 0.043,
+            SAR: 0.044,
+            JPY: 1.72,
+            KRW: 15.8
+
+        };
+
+
+        const converted =
+            valueINR * rates[currency];
+
+
+        const symbol =
+            getCurrencySymbol(currency);
+
+
+        resultValue.innerText =
+            symbol +
+            converted.toLocaleString(
+                undefined,
+                {
+                    maximumFractionDigits: 0
+                }
+            );
+
+
+        result.style.display = "block";
+
+
+        result.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+
+    }, 2200);
+
+}
+
+
+/* =========================================================
+   INITIAL GAME
+========================================================= */
+
+changeGame();
+
+
+/* =========================================================
+   UPLOAD PREVIEW MESSAGE
+========================================================= */
+
+document
+    .getElementById("accountUpload")
+    .addEventListener("change", function() {
+
+        if (this.files.length > 0) {
+
+            const file =
+                this.files[0];
+
+            const size =
+                (file.size / 1024 / 1024).toFixed(2);
+
+            document.querySelector(".upload-box p").innerText =
+                "Selected: " +
+                file.name +
+                " (" +
+                size +
+                " MB)";
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
